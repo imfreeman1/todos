@@ -1,18 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface Todo {
-	id: number;
+	id: string;
 	content: string;
 }
 
 type State = Todo[];
 
+const todoInitState: State = [];
+
 export const todoSlice = createSlice({
 	name: 'todo',
-	initialState: [],
+	initialState: todoInitState,
 	reducers: {
-		setTodo: (state: State, action) => {
-			state = [...state, action.payload];
+		setTodo: (state, { payload }: PayloadAction<Todo>): State => {
+			state = [...state, payload];
+			return state;
 		},
 	},
 });
