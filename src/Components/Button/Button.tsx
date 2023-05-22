@@ -1,9 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-const Button = () => {
-  return (
-    <button> 버튼 </button>
-  )
+interface IButton {
+	type: 'button' | 'submit' | 'reset' | undefined;
+	content: string;
+	onClick(): void;
+	className?: string;
 }
 
-export default Button
+const Button = ({ content, onClick, type, className }: IButton) => {
+	return (
+		<button
+			onClick={onClick}
+			type={type}
+			className={className}
+		>
+			{' '}
+			{content}{' '}
+		</button>
+	);
+};
+
+export default Button;
