@@ -8,28 +8,22 @@ import { v4 } from 'uuid';
 
 // interface는 객체를 만들 때, 사용하는 것 같음.
 
-interface IPayload {
-	id : string;
-	content: string;
-}
-
 const TodoContainer: React.FC = () => {
-	const {TodoTask, CompleteTask} = useSelector((state: RootState) => state.todo);
-	const inputRef = useRef<HTMLInputElement>(null);
+	const { TodoTask } = useSelector((state: RootState) => state.todo);
 	const dispatch = useDispatch();
-	const focusRef = useRef<HTMLLIElement>();
+	const inputRef = useRef<HTMLInputElement>(null);
+	const focusRef = useRef<HTMLLIElement>(null);
 
 	const removeHandler = (event: MouseEvent) => {
 		const target = event.target as HTMLButtonElement;
-		const selectedId:IPayload = {id:target.parentNode.id};
-		dispatch(removeTodo( selectedId));
+		dispatch(removeTodo({ id: target.parentNode.id })); // 여기에 id값이 any라서 string을 넣을 수 없다.
 	};
 
 	const handleSubmit = (event: MouseEvent) => {
 		event.preventDefault();
 		const newID: string = v4();
 		if (inputRef.current && inputRef.current.value !== '') {
-			dispatch(setTodo({ id: newID, content: inputRef.current.value }));
+			dispatch(setTodo({ id: newID, content: inputRef.current.value, isComplete: false }));
 			inputRef.current.value = '';
 		}
 	};
