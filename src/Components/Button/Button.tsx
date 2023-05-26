@@ -3,11 +3,13 @@ import React from 'react';
 interface IButton {
 	type: 'button' | 'submit' | 'reset' | undefined;
 	content: string;
-	onClick(event:React.MouseEvent<HTMLButtonElement>) : void;
+	onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
 	className?: string;
 }
 
-const Button = ({ content, onClick, type, className }: IButton) => {
+// 버튼을 만들어서 쓸때, event를 받을때도 있고 안받을때도 있잖아요. 그래서
+
+const Button = ({ content, onClick, type, className  }: IButton) => {
 	return (
 		<button
 			onClick={onClick}
