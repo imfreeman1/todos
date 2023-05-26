@@ -1,3 +1,3 @@
 import { todoSlice } from './todoSlice';
 
-export const { setTodo } = todoSlice.actions;
+export const { setTodo, removeTodo } = todoSlice.actions;

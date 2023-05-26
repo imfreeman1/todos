@@ -7,14 +7,28 @@ interface Todo {
 
 type State = Todo[];
 
-const todoInitState: State = [];
+interface InitState {
+	TodoTask : State;
+	CompleteTask : State;
+}
+const todoInitState: InitState = {
+	TodoTask: [],
+	CompleteTask: []
+};
 
 export const todoSlice = createSlice({
 	name: 'todo',
 	initialState: todoInitState,
 	reducers: {
-		setTodo: (state, { payload }: PayloadAction<Todo>): State => {
-			state = [...state, payload];
+		setTodo: (state, { payload }: PayloadAction<Todo>): InitState => {
+			state.TodoTask = [...state.TodoTask, payload];
+			return state;
+		},
+		removeTodo: (state, { payload }: PayloadAction<Todo>): InitState => {
+			console.log(payload);
+			state.TodoTask = state.TodoTask.filter(({ id }) => {
+				id !== payload.id;
+			});
 			return state;
 		},
 	},

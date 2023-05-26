@@ -3,18 +3,27 @@ import TodoPresent from './TodoPresent';
 import App from 'next/app';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/Redux/Store';
-import { setTodo } from 'src/Redux/action';
+import { removeTodo, setTodo } from 'src/Redux/action';
 import { v4 } from 'uuid';
 
 // interface는 객체를 만들 때, 사용하는 것 같음.
 
+interface IPayload {
+	id : string;
+	content: string;
+}
+
 const TodoContainer: React.FC = () => {
-	const todoList = useSelector((state: RootState) => state.todo);
-	console.log(todoList);
+	const {TodoTask, CompleteTask} = useSelector((state: RootState) => state.todo);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const dispatch = useDispatch();
+	const focusRef = useRef<HTMLLIElement>();
 
-	const removeHandler = () => {};
+	const removeHandler = (event: MouseEvent) => {
+		const target = event.target as HTMLButtonElement;
+		const selectedId:IPayload = {id:target.parentNode.id};
+		dispatch(removeTodo( selectedId));
+	};
 
 	const handleSubmit = (event: MouseEvent) => {
 		event.preventDefault();
@@ -26,10 +35,11 @@ const TodoContainer: React.FC = () => {
 	};
 	return (
 		<TodoPresent
-			todoList={todoList}
+			TodoTask={TodoTask}
 			handleSubmit={handleSubmit}
 			inputRef={inputRef}
-			onClick={removeHandler}
+			removeHandler={removeHandler}
+			focusRef={focusRef}
 		/>
 	);
 };
