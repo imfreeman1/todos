@@ -1,4 +1,5 @@
 export interface TODO {
+	// 
 	[Key: string]: string | boolean;
 	id: string;
 	content: string;
@@ -7,8 +8,8 @@ export interface TODO {
 
 export enum Todo {
 	id = 'id',
-	conetent = 'content',
-	isComplete = 'isCompelete',
+	content = 'content',
+	isComplete = 'isComplete',
 }
 
 export interface todoMakerType {
