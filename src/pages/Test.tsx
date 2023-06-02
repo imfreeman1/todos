@@ -1,19 +1,17 @@
-import React from 'react';
-import { CompletedDiv, DefaultDiv, DefaultInnerDiv, TodoSection, TodoTask } from 'src/styles/styledComponent';
+import React, { ReactElement } from 'react';
+import { StyledInnerDiv, StyledOuterDiv, TodoSection } from 'src/styles/styledComponent';
 import Lottie from 'lottie-react';
 import travel from '../../public/lottie/travel.json';
+import TodoContainer from 'src/Components/TodosOuter/TodoContainer';
 const Test = () => {
 	return (
 		<TodoSection>
+			<TodoContainer />
+			<StyledOuterDiv.wether />
 			<Lottie
 				animationData={travel}
-				className="w-screen h-screen absolute"
+				className="w-full h-screen absolute z-10 opacity-50 pointer-events-none"
 			/>
-			<DefaultDiv>123123</DefaultDiv>
-			<CompletedDiv>555</CompletedDiv>
-			<TodoTask>
-				<DefaultInnerDiv>111</DefaultInnerDiv>
-			</TodoTask>
 		</TodoSection>
 	);
 };

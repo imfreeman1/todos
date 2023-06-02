@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { HTMLInputTypeAttribute, RefObject } from 'react';
+import { DefaultStyle } from 'src/styles/styledComponent';
 
-const Input = () => {
-  return (
-    <form>
-      <label>
-      <input placeholder='입력창'/>
-      </label>
-    </form>
-  )
+interface IInput {
+	type: HTMLInputTypeAttribute;
+	inputRef?: RefObject<HTMLInputElement>;
+	placeholder?: string;
+	onClick?: MouseEvent;
 }
 
-export default Input
+const Input = ({ inputRef, placeholder, type }: IInput) => {
+	return (
+		<DefaultStyle.input
+			placeholder={placeholder}
+			ref={inputRef}
+			type={type}
+		/>
+	);
+};
+
+export default Input;
