@@ -1,19 +1,32 @@
-import React, { HTMLInputTypeAttribute, RefObject } from 'react';
+import React, {
+	ChangeEvent,
+	ChangeEventHandler,
+	FormEventHandler,
+	HTMLInputTypeAttribute,
+	MouseEventHandler,
+	RefObject,
+} from 'react';
+import { SubmitErrorHandler } from 'react-hook-form';
 import { DefaultStyle } from 'src/styles/styledComponent';
 
 interface IInput {
 	type: HTMLInputTypeAttribute;
-	inputRef?: RefObject<HTMLInputElement>;
+	value?: string;
+	onChange?: ChangeEventHandler<HTMLInputElement>;
 	placeholder?: string;
-	onClick?: MouseEvent;
+	onSubmit?: FormEventHandler<HTMLInputElement>;
+	onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
-const Input = ({ inputRef, placeholder, type }: IInput) => {
+const Input = ({ placeholder, type, value, onChange, onSubmit, onClick }: IInput) => {
 	return (
 		<DefaultStyle.input
 			placeholder={placeholder}
-			ref={inputRef}
+			onChange={onChange}
+			value={value}
+			onSubmit={onSubmit}
 			type={type}
+			onClick={onClick}
 		/>
 	);
 };

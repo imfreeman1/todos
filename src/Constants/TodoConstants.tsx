@@ -1,5 +1,6 @@
-const Todo = {
-  title:`${'todoList'.toUpperCase()}`
- }
+const TODO_CONSTANT = {
+	TITLE: `${'todoList'.toUpperCase()}`,
+	INIT: { title: '', content: '' },
+};
 
- export default Todo;
+export default TODO_CONSTANT;
