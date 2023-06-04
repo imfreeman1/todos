@@ -1,8 +1,6 @@
-import React, { ChangeEvent, ChangeEventHandler, Dispatch, ReactElement, RefObject, SetStateAction } from 'react';
+import React, { ChangeEvent, Dispatch, ReactElement, RefObject, SetStateAction } from 'react';
 import Button from '../Button/Button';
-import Todo from 'src/Constants/TodoConstants';
 import { TODO } from 'src/Interface/todoInterface';
-import TodoDisplayContainer from '../TodoDisplay/TodoDisplayContainer';
 import { StyledInnerDiv, StyledOuterDiv } from 'src/styles/styledComponent';
 import Input from '../Input/Input';
 import { InputStates } from './TodoContainer';
